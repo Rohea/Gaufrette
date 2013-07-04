@@ -96,12 +96,7 @@ class File
             return $this->size;
         }
 
-        try {
-            return $this->size = Util\Size::fromContent($this->getContent());
-        } catch (FileNotFound $exception) {
-        }
-
-        return 0;
+        return $this->size = Util\Size::fromContent($this->getContent());
     }
 
     /**

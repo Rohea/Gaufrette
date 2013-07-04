@@ -24,13 +24,9 @@ class FileSpec extends ObjectBehavior
         $this->getKey()->shouldReturn('filename');
     }
 
-    /**
-     * @param \Gaufrette\Filesystem $filesystem
-     */
-    function it_gets_content($filesystem)
+    function it_gets_content()
     {
-        $filesystem->read('filename')->shouldBeCalled()->willReturn('Some content');
-
+        $this->setContent("Some content");
         $this->getContent()->shouldReturn('Some content');
     }
 
@@ -39,7 +35,7 @@ class FileSpec extends ObjectBehavior
      */
     function it_gets_mtime($filesystem)
     {
-        $filesystem->mtime('filename')->shouldBeCalled()->willReturn(1358797854);
+        $this->setMTime(1358797854);
 
         $this->getMtime()->shouldReturn(1358797854);
     }
@@ -51,53 +47,17 @@ class FileSpec extends ObjectBehavior
     function it_pass_metadata_when_write_content($filesystem, $adapter)
     {
         $metadata = array('id' => '123');
-        $adapter->setMetadata('filename', $metadata)->shouldBeCalled();
-        $filesystem->write('filename', 'some content', true)->willReturn(12);
+        $filesystem->write('filename', 'some content', true, $metadata)->willReturn(12);
         $filesystem->getAdapter()->willReturn($adapter);
 
         $this->setContent('some content', $metadata);
     }
 
-    /**
-     * @param \Gaufrette\Filesystem $filesystem
-     * @param \spec\Gaufrette\MetadataAdapter $adapter
-     */
-    function it_pass_metadata_when_read_content($filesystem, $adapter)
+    function it_sets_content_of_file()
     {
-        $metadata = array('id' => '123');
-        $adapter->setMetadata('filename', $metadata)->shouldBeCalled();
-        $filesystem->read('filename')->willReturn('some content');
-        $filesystem->getAdapter()->willReturn($adapter);
+        $this->setContent('some content');
 
-        $this->getContent($metadata);
-    }
-
-    /**
-     * @param \Gaufrette\Filesystem $filesystem
-     * @param \spec\Gaufrette\MetadataAdapter $adapter
-     */
-    function it_pass_metadata_when_delete_content($filesystem, $adapter)
-    {
-        $metadata = array('id' => '123');
-        $adapter->setMetadata('filename', $metadata)->shouldBeCalled();
-        $filesystem->delete('filename')->willReturn(true);
-        $filesystem->getAdapter()->willReturn($adapter);
-
-        $this->delete($metadata);
-    }
-
-    /**
-     * @param \Gaufrette\Filesystem $filesystem
-     * @param \spec\Gaufrette\MetadataAdapter $adapter
-     */
-    function it_sets_content_of_file($filesystem, $adapter)
-    {
-        $adapter->setMetadata('filename', array())->shouldNotBeCalled();
-        $filesystem->getAdapter()->willReturn($adapter);
-        $filesystem->write('filename', 'some content', true)->shouldBeCalled()->willReturn(21);
-
-        $this->setContent('some content')->shouldReturn(21);
-        $this->getContent('filename')->shouldReturn('some content');
+        $this->getContent()->shouldReturn('some content');
     }
 
     function it_sets_key_as_name_by_default()
@@ -111,23 +71,15 @@ class FileSpec extends ObjectBehavior
         $this->getName()->shouldReturn('name');
     }
 
-    /**
-     * @param \Gaufrette\Filesystem $filesystem
-     */
-    function it_sets_size_for_new_file($filesystem)
+    function it_sets_size_for_new_file()
     {
-        $filesystem->write('filename', 'some content', true)->shouldBeCalled()->willReturn(21);
-
         $this->setContent('some content');
-        $this->getSize()->shouldReturn(21);
+        $this->getSize()->shouldReturn(12);
     }
 
-    /**
-     * @param \Gaufrette\Filesystem $filesystem
-     */
-    function it_calculates_size_from_content($filesystem)
+    function it_calculates_size_from_content()
     {
-        $filesystem->read('filename')->shouldBeCalled()->willReturn('some content');
+        $this->setContent('some content');
 
         $this->getSize()->shouldReturn(12);
     }
@@ -153,26 +105,6 @@ class FileSpec extends ObjectBehavior
         $this->getSize()->shouldReturn(0);
     }
 
-    /**
-     * @param \Gaufrette\Filesystem $filesystem
-     */
-    function it_check_if_file_with_key_exists_in_filesystem($filesystem)
-    {
-        $filesystem->has('filename')->willReturn(true);
-        $this->exists()->shouldReturn(true);
-
-        $filesystem->has('filename')->willReturn(false);
-        $this->exists()->shouldReturn(false);
-    }
-
-    /**
-     * @param \Gaufrette\Filesystem $filesystem
-     */
-    function it_deletes_file_from_filesystem($filesystem)
-    {
-        $filesystem->delete('filename')->shouldBeCalled()->willReturn(true);
-        $this->delete()->shouldReturn(true);
-    }
 }
 
 interface MetadataAdapter extends \Gaufrette\Adapter,

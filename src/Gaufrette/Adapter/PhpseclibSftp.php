@@ -59,7 +59,7 @@ class PhpseclibSftp implements Adapter,
     /**
      * {@inheritDoc}
      */
-    public function write($key, $content)
+    public function write($key, $content, array $metadata = null)
     {
         $this->initialize();
 

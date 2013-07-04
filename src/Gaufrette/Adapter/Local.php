@@ -54,7 +54,7 @@ class Local implements Adapter,
     /**
      * {@inheritDoc}
      */
-    public function write($key, $content)
+    public function write($key, $content, array $metadata = null)
     {
         $path = $this->computePath($key);
         $this->ensureDirectoryExists(dirname($path), true);

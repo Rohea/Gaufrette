@@ -146,7 +146,7 @@ class FilesystemSpec extends ObjectBehavior
     function it_writes_content_to_new_file($adapter)
     {
         $adapter->exists('filename')->shouldBeCalled()->willReturn(false);
-        $adapter->write('filename', 'some content to write')->shouldBeCalled()->willReturn(21);
+        $adapter->write('filename', 'some content to write', null)->shouldBeCalled()->willReturn(21);
 
         $this->write('filename', 'some content to write')->shouldReturn(21);
     }
@@ -156,7 +156,7 @@ class FilesystemSpec extends ObjectBehavior
      */
     function it_updates_content_of_file($adapter)
     {
-        $adapter->write('filename', 'some content to write')->shouldBeCalled()->willReturn(21);
+        $adapter->write('filename', 'some content to write', null)->shouldBeCalled()->willReturn(21);
 
         $this->write('filename', 'some content to write', true)->shouldReturn(21);
     }
@@ -181,7 +181,7 @@ class FilesystemSpec extends ObjectBehavior
     function it_fails_when_write_is_not_successful($adapter)
     {
         $adapter->exists('filename')->willReturn(false);
-        $adapter->write('filename', 'some content to write')->shouldBeCalled()->willReturn(false);
+        $adapter->write('filename', 'some content to write', null)->shouldBeCalled()->willReturn(false);
 
         $this
             ->shouldThrow(new \RuntimeException('Could not write the "filename" key content.'))

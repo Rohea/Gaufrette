@@ -94,9 +94,9 @@ class AclAwareAmazonS3 implements Adapter,
     /**
      * {@inheritDoc}
      */
-    public function write($key, $content)
+    public function write($key, $content, array $metadata = null)
     {
-        $rs = $this->delegate->write($key, $content);
+        $rs = $this->delegate->write($key, $content, $metadata);
 
         try {
             $this->updateAcl($key);
@@ -161,6 +161,18 @@ class AclAwareAmazonS3 implements Adapter,
         }
 
         return array();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isMetadataKeyAllowed($metaKey)
+    {
+        if ($this->delegate instanceof MetadataSupporter) {
+            return $this->delegate->isMetadataKeyAllowed($metaKey);
+        }
+
+        return false;
     }
 
     /**

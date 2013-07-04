@@ -124,7 +124,7 @@ class DoctrineDbal implements Adapter,
     /**
      * {@inheritDoc}
      */
-    public function write($key, $content)
+    public function write($key, $content, array $metadata = null)
     {
         $values = array(
             $this->getQuotedColumn('content')  => $content,

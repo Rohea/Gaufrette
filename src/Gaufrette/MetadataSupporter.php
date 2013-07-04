@@ -10,14 +10,25 @@ namespace Gaufrette;
 interface MetadataSupporter
 {
     /**
+     * @deprecated
+     *
      * @param string $key
-     * @param array  $content
+     * @param array  $metadata
      */
-    public function setMetadata($key, $content);
+    public function setMetadata($key, $metadata);
 
     /**
+     * @deprecated
+     *
      * @param  string $key
      * @return array
      */
     public function getMetadata($key);
+
+    /**
+     * @param string $metaKey
+     *
+     * @return boolean
+     */
+    public function isMetadataKeyAllowed($metaKey);
 }

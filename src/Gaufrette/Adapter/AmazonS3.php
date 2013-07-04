@@ -75,6 +75,15 @@ class AmazonS3 implements Adapter,
     /**
      * {@inheritDoc}
      */
+    public function isMetadataKeyAllowed($metaKey)
+    {
+        //Supports all metadata keys
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setMetadata($key, $metadata)
     {
         $path = $this->computePath($key);
@@ -137,7 +146,7 @@ class AmazonS3 implements Adapter,
     /**
      * {@inheritDoc}
      */
-    public function write($key, $content)
+    public function write($key, $content, array $metadata = null)
     {
         $this->ensureBucketExists();
 

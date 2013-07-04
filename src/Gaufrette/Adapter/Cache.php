@@ -187,6 +187,18 @@ class Cache implements Adapter,
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function isMetadataKeyAllowed($metaKey)
+    {
+        if ($this->source instanceof MetadataSupporter) {
+            return $this->source->isMetadataKeyAllowed($metaKey);
+        }
+
+        return false;
+    }
+
+    /**
      * Indicates whether the cache for the specified key needs to be reloaded
      *
      * @param string $key

@@ -47,7 +47,7 @@ class GridFS implements Adapter,
     /**
      * {@inheritDoc}
      */
-    public function write($key, $content)
+    public function write($key, $content, array $metadata = null)
     {
         if ($this->exists($key)) {
             $this->delete($key);
@@ -151,6 +151,15 @@ class GridFS implements Adapter,
     private function find($key, array $fields = array())
     {
         return $this->gridFS->findOne($key, $fields);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isMetadataKeyAllowed($metaKey)
+    {
+        //Supports all metadata keys
+        return true;
     }
 
     /**

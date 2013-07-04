@@ -53,7 +53,7 @@ class Zip implements Adapter
     /**
      * {@inheritDoc}
      */
-    public function write($key, $content)
+    public function write($key, $content, array $metadata = null)
     {
         if (!$this->zipArchive->addFromString($key, $content)) {
             return false;

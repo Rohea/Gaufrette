@@ -114,7 +114,7 @@ class AclAwareAmazonS3Spec extends ObjectBehavior
             ->willReturn(new \CFResponse(array(), '', 200))
         ;
         $adapter
-            ->write('filename', 'some content')
+            ->write('filename', 'some content', null)
             ->shouldBeCalled()
             ->willReturn(12)
         ;
@@ -138,7 +138,7 @@ class AclAwareAmazonS3Spec extends ObjectBehavior
             ->willReturn(new \CFResponse(array(), '', 500))
         ;
         $adapter
-            ->write('filename', 'some content')
+            ->write('filename', 'some content', null)
             ->shouldBeCalled()
             ->willReturn(12)
         ;
@@ -162,7 +162,7 @@ class AclAwareAmazonS3Spec extends ObjectBehavior
             ->willReturn(new \CFResponse(array(), '', 200))
         ;
         $adapter
-            ->write('filename', 'some content')
+            ->write('filename', 'some content', null)
             ->willReturn(12)
         ;
 

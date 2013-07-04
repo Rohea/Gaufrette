@@ -96,18 +96,19 @@ class Filesystem
      * @param string  $key                 Key of the file
      * @param string  $content             Content to write in the file
      * @param boolean $overwrite           Whether to overwrite the file if exists
+     * @param array   $metadata            Metadata (if adapter allows it)
      * @throws Exception\FileAlreadyExists When file already exists and overwrite is false
      * @throws \RuntimeException           When for any reason content could not be written
      *
      * @return integer The number of bytes that were written into the file
      */
-    public function write($key, $content, $overwrite = false)
+    public function write($key, $content, $overwrite = false, array $metadata = null)
     {
         if (!$overwrite && $this->has($key)) {
             throw new Exception\FileAlreadyExists($key);
         }
 
-        $numBytes = $this->adapter->write($key, $content);
+        $numBytes = $this->adapter->write($key, $content, $metadata);
 
         if (false === $numBytes) {
             throw new \RuntimeException(sprintf('Could not write the "%s" key content.', $key));

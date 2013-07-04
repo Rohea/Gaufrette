@@ -1,9 +1,5 @@
 <?php
-
 namespace Gaufrette;
-
-use Gaufrette\MetadataSupporter;
-use Gaufrette\Exception\FileNotFound;
 
 /**
  * Points to a file in a filesystem
@@ -13,10 +9,8 @@ use Gaufrette\Exception\FileNotFound;
 class File
 {
     protected $key;
-    protected $filesystem;
 
     /**
-     * Content variable is lazy. It will not be read from filesystem until it's requested first time
      * @var content
      */
     protected $content = null;
@@ -24,7 +18,7 @@ class File
     /**
      * @var array metadata in associative array. Only for adapters that support metadata
      */
-    protected $metadata = null;
+    protected $metadata = array();
 
     /**
      * Human readable filename (usually the end of the key)
@@ -48,13 +42,11 @@ class File
      * Constructor
      *
      * @param string     $key
-     * @param Filesystem $filesystem
      */
-    public function __construct($key, Filesystem $filesystem)
+    public function __construct($key)
     {
         $this->key = $key;
         $this->name = $key;
-        $this->filesystem = $filesystem;
     }
 
     /**
@@ -72,17 +64,11 @@ class File
      *
      * @throws Gaufrette\Exception\FileNotFound
      *
-     * @param  array  $metadata optional metadata which should be send when read
      * @return string
      */
-    public function getContent($metadata = array())
+    public function getContent()
     {
-        if (isset($this->content)) {
-            return $this->content;
-        }
-        $this->setMetadata($metadata);
-
-        return $this->content = $this->filesystem->read($this->key);
+        return $this->content;
     }
 
     /**
@@ -91,6 +77,14 @@ class File
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
     }
 
     /**
@@ -117,7 +111,22 @@ class File
      */
     public function getMtime()
     {
-        return $this->mtime = $this->filesystem->mtime($this->key);
+        return $this->mtime;
+    }
+
+    /**
+     * Get single metadata item
+     *
+     * @param string metaKey
+     *
+     * @return string value, null if key does not exist
+     */
+    public function getMetadataItem($metaKey)
+    {
+        if (isset($this->metadata[$metaKey])) {
+            return $this->metadata[$metaKey];
+        }
+        return null;
     }
 
     /**
@@ -142,7 +151,7 @@ class File
         $this->content = $content;
         $this->setMetadata($metadata);
 
-        return $this->size = $this->filesystem->write($this->key, $this->content, true);
+        return $this->size = Util\Size::fromContent($content);
     }
 
     /**
@@ -154,62 +163,32 @@ class File
     }
 
     /**
-     * Indicates whether the file exists in the filesystem
+     * @deprecated Use setMetadataItem($item) instead
      *
-     * @return boolean
+     * @param array $metadata
      */
-    public function exists()
+    public function setMetadata($metadata)
     {
-        return $this->filesystem->has($this->key);
+        $this->metadata = $metadata;
     }
 
     /**
-     * Deletes the file from the filesystem
-     *
-     * @throws Gaufrette\Exception\FileNotFound
-     * @throws \RuntimeException                when cannot delete file
-     * @param  array                            $metadata optional metadata which should be send when write
-     * @return boolean                          TRUE on success
+     * @param integer $mtime
      */
-    public function delete($metadata = array())
+    public function setMTime($mtime)
     {
-        $this->setMetadata($metadata);
-
-        return $this->filesystem->delete($this->key);
+        $this->mtime = $mtime;
     }
 
     /**
-     * Creates a new file stream instance of the file
+     * Add one metadata item to file (only if adapter supports metadata)
      *
-     * @return FileStream
+     * @param   string  $metaKey
+     * @param   string  $metaValue
      */
-    public function createStream()
+    public function setMetadataItem($metaKey, $metaValue)
     {
-        return $this->filesystem->createStream($this->key);
+        $this->metadata[$metaKey] = $metaValue;
     }
 
-    /**
-     * Sets the metadata array to be stored in adapters that can support it
-     *
-     * @param  array   $metadata
-     * @return boolean
-     */
-    protected function setMetadata(array $metadata)
-    {
-        if ($metadata && $this->supportsMetadata()) {
-            $this->filesystem->getAdapter()->setMetadata($this->key, $metadata);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @return boolean
-     */
-    private function supportsMetadata()
-    {
-        return $this->filesystem->getAdapter() instanceof MetadataSupporter;
-    }
 }

@@ -24,10 +24,11 @@ interface Adapter
      *
      * @param string $key
      * @param string $content
+     * @param array  $metadata
      *
      * @return integer|boolean The number of bytes that were written into the file
      */
-    public function write($key, $content);
+    public function write($key, $content, array $metadata = null);
 
     /**
      * Indicates whether the file exists

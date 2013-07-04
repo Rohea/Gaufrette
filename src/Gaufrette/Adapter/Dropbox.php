@@ -64,7 +64,7 @@ class Dropbox implements Adapter
      *
      * @throws \Dropbox_Exception
      */
-    public function write($key, $content)
+    public function write($key, $content, array $metadata = null)
     {
         $resource = tmpfile();
         fwrite($resource, $content);

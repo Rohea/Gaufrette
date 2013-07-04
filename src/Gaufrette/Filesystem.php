@@ -227,7 +227,7 @@ class Filesystem
     {
         $this->assertHasFile($key);
 
-        if ($this->adapter instanceof Adapter\ChecksumCalculator) {
+        if ($this->adapter instanceof ChecksumCalculator) {
             return $this->adapter->checksum($key);
         }
 
@@ -239,7 +239,7 @@ class Filesystem
      */
     public function createStream($key)
     {
-        if ($this->adapter instanceof Adapter\StreamFactory) {
+        if ($this->adapter instanceof StreamFactory) {
             return $this->adapter->createStream($key);
         }
 
@@ -251,7 +251,7 @@ class Filesystem
      */
     public function createFile($key)
     {
-        if ($this->adapter instanceof Adapter\FileFactory) {
+        if ($this->adapter instanceof FileFactory) {
             return $this->adapter->createFile($key, $this);
         }
 

@@ -3,6 +3,7 @@
 namespace Gaufrette\Adapter;
 
 use Gaufrette\Adapter;
+use Gaufrette\ChecksumCalculator;
 use Ssh\Sftp as SftpClient;
 
 class Sftp implements Adapter,

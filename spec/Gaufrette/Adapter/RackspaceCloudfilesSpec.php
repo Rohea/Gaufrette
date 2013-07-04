@@ -21,7 +21,7 @@ class RackspaceCloudfilesSpec extends ObjectBehavior
 
     function it_is_checksum_calculator()
     {
-        $this->shouldHaveType('Gaufrette\Adapter\ChecksumCalculator');
+        $this->shouldHaveType('Gaufrette\ChecksumCalculator');
     }
 
     /**

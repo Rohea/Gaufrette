@@ -3,6 +3,8 @@
 namespace Gaufrette\Adapter;
 
 use Gaufrette\Adapter;
+use Gaufrette\FileFactory;
+use Gaufrette\ListKeysAware;
 use \Net_SFTP;
 use Gaufrette\Filesystem;
 use Gaufrette\File;

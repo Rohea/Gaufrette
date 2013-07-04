@@ -25,7 +25,7 @@ class DoctrineDbalSpec extends ObjectBehavior
 
     function it_is_checksum_calculator()
     {
-        $this->shouldHaveType('Gaufrette\Adapter\ChecksumCalculator');
+        $this->shouldHaveType('Gaufrette\ChecksumCalculator');
     }
 
     function it_does_not_handle_directories()

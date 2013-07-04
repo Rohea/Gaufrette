@@ -21,7 +21,7 @@ class FtpSpec extends ObjectBehavior
 
     function it_supports_native_list_keys()
     {
-        $this->shouldHaveType('Gaufrette\Adapter\ListKeysAware');
+        $this->shouldHaveType('Gaufrette\ListKeysAware');
     }
 
     function it_checks_if_file_exists_for_absolute_path()

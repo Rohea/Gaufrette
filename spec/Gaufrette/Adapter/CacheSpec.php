@@ -22,7 +22,7 @@ class CacheSpec extends ObjectBehavior
 
     function it_supports_metadata()
     {
-        $this->shouldHaveType('Gaufrette\Adapter\MetadataSupporter');
+        $this->shouldHaveType('Gaufrette\MetadataSupporter');
     }
 
     /**
@@ -149,8 +149,8 @@ class CacheSpec extends ObjectBehavior
 }
 
 interface CacheTestExtendedAdapter extends \Gaufrette\Adapter,
-                                           \Gaufrette\Adapter\ChecksumCalculator,
-                                           \Gaufrette\Adapter\MetadataSupporter
+                                           \Gaufrette\ChecksumCalculator,
+                                           \Gaufrette\MetadataSupporter
 {
 
 }

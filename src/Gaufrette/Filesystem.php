@@ -2,7 +2,7 @@
 
 namespace Gaufrette;
 
-use Gaufrette\Adapter\ListKeysAware;
+use Gaufrette\ListKeysAware;
 
 /**
  * A filesystem is used to store and retrieve files

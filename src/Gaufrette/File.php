@@ -2,7 +2,7 @@
 
 namespace Gaufrette;
 
-use Gaufrette\Adapter\MetadataSupporter;
+use Gaufrette\MetadataSupporter;
 use Gaufrette\Exception\FileNotFound;
 
 /**
@@ -114,7 +114,7 @@ class File
      * Returns the file modified time
      *
      * @return int
-     */    
+     */
     public function getMtime()
     {
         return $this->mtime = $this->filesystem->mtime($this->key);

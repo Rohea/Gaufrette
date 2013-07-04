@@ -22,7 +22,7 @@ class AclAwareAmazonS3Spec extends ObjectBehavior
 
     function it_supports_metadata()
     {
-        $this->shouldHaveType('Gaufrette\Adapter\MetadataSupporter');
+        $this->shouldHaveType('Gaufrette\MetadataSupporter');
     }
 
     /**
@@ -233,6 +233,6 @@ class AclAwareAmazonS3Spec extends ObjectBehavior
 }
 
 interface TestDelegateAdapter extends \Gaufrette\Adapter,
-                                      \Gaufrette\Adapter\MetadataSupporter
+                                      \Gaufrette\MetadataSupporter
 {
 }

@@ -3,6 +3,9 @@
 namespace Gaufrette\Adapter;
 
 use Gaufrette\Adapter;
+use Gaufrette\ChecksumCalculator;
+use Gaufrette\MetadataSupporter;
+use Gaufrette\ListKeysAware;
 use \MongoGridFS as MongoGridFs;
 use \MongoDate;
 

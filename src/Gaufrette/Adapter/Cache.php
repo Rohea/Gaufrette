@@ -5,6 +5,7 @@ namespace Gaufrette\Adapter;
 use Gaufrette\File;
 use Gaufrette\Adapter;
 use Gaufrette\Adapter\InMemory as InMemoryAdapter;
+use Gaufrette\MetadataSupporter;
 
 /**
  * Cache adapter

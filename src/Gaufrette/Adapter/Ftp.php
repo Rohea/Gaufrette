@@ -6,6 +6,8 @@ use Gaufrette\Adapter;
 use Gaufrette\File;
 use Gaufrette\Filesystem;
 use Gaufrette\Exception;
+use Gaufrette\FileFactory;
+use Gaufrette\ListKeysAware;
 
 /**
  * Ftp adapter

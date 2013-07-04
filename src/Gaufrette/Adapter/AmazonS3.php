@@ -4,6 +4,7 @@ namespace Gaufrette\Adapter;
 
 use \AmazonS3 as AmazonClient;
 use Gaufrette\Adapter;
+use Gaufrette\MetadataSupporter;
 
 /**
  * Amazon S3 adapter
@@ -31,7 +32,7 @@ class AmazonS3 implements Adapter,
         );
     }
 
-    /** 
+    /**
      * Set the acl used when writing files
      *
      * @param string $acl
@@ -43,7 +44,7 @@ class AmazonS3 implements Adapter,
 
     /**
      * Get the acl used when writing files
-     * 
+     *
      * @return string
      */
     public function getAcl()

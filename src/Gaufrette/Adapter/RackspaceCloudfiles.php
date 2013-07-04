@@ -3,6 +3,7 @@
 namespace Gaufrette\Adapter;
 
 use Gaufrette\Adapter;
+use Gaufrette\ChecksumCalculator;
 use Gaufrette\Util;
 use \CF_Container as RackspaceContainer;
 

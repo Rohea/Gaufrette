@@ -29,12 +29,12 @@ class PhpseclibSftpSpec extends ObjectBehavior
 
     function it_is_file_factory()
     {
-        $this->shouldHaveType('Gaufrette\Adapter\FileFactory');
+        $this->shouldHaveType('Gaufrette\FileFactory');
     }
 
     function it_supports_native_list_keys()
     {
-        $this->shouldHaveType('Gaufrette\Adapter\ListKeysAware');
+        $this->shouldHaveType('Gaufrette\ListKeysAware');
     }
 
     /**

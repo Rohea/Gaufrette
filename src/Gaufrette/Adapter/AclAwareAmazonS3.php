@@ -4,6 +4,7 @@ namespace Gaufrette\Adapter;
 
 use \AmazonS3 as AmazonClient;
 use Gaufrette\Adapter;
+use Gaufrette\MetadataSupporter;
 
 /**
  * Makes the AmazonS3 adapter ACL aware.

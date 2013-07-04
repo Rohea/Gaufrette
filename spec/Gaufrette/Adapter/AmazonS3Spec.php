@@ -22,7 +22,7 @@ class AmazonS3Spec extends ObjectBehavior
 
     function it_supports_metadata()
     {
-        $this->shouldHaveType('Gaufrette\Adapter\MetadataSupporter');
+        $this->shouldHaveType('Gaufrette\MetadataSupporter');
     }
 
     /**

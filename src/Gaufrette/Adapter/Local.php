@@ -5,7 +5,8 @@ namespace Gaufrette\Adapter;
 use Gaufrette\Util;
 use Gaufrette\Adapter;
 use Gaufrette\Stream;
-use Gaufrette\Adapter\StreamFactory;
+use Gaufrette\StreamFactory;
+use Gaufrette\ChecksumCalculator;
 use Gaufrette\Exception;
 
 /**

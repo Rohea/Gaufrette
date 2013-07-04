@@ -6,6 +6,8 @@ use Gaufrette\Adapter;
 use Gaufrette\Util;
 
 use Doctrine\DBAL\Connection;
+use Gaufrette\ChecksumCalculator;
+use Gaufrette\ListKeysAware;
 
 /**
  * Doctrine DBAL adapter

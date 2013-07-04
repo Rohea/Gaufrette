@@ -19,7 +19,7 @@ class LazyRackspaceCloudfilesSpec extends ObjectBehavior
 
     function it_is_rackspace_adapter()
     {
-        $this->shouldHaveType('\Gaufrette\Adapter\RackspaceCloudfiles');
+        $this->shouldHaveType('\Gaufrette\RackspaceCloudfiles');
     }
 
     /**

@@ -22,17 +22,17 @@ class GridFSSpec extends ObjectBehavior
 
     function it_is_checksum_calculator()
     {
-        $this->shouldHaveType('Gaufrette\Adapter\ChecksumCalculator');
+        $this->shouldHaveType('Gaufrette\ChecksumCalculator');
     }
 
     function it_supports_metadata()
     {
-        $this->shouldHaveType('Gaufrette\Adapter\MetadataSupporter');
+        $this->shouldHaveType('Gaufrette\MetadataSupporter');
     }
 
     function it_supports_native_list_keys()
     {
-        $this->shouldHaveType('Gaufrette\Adapter\ListKeysAware');
+        $this->shouldHaveType('Gaufrette\ListKeysAware');
     }
 
     /**

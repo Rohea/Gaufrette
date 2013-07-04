@@ -27,12 +27,12 @@ class LocalSpec extends ObjectBehavior
 
     function it_is_checksum_calculator()
     {
-        $this->shouldHaveType('Gaufrette\Adapter\ChecksumCalculator');
+        $this->shouldHaveType('Gaufrette\ChecksumCalculator');
     }
 
     function it_is_stream_factory()
     {
-        $this->shouldHaveType('Gaufrette\Adapter\StreamFactory');
+        $this->shouldHaveType('Gaufrette\StreamFactory');
     }
 
     function it_reads_file()
